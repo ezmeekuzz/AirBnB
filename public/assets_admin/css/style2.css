@@ -1,0 +1,231 @@
+body {
+    color: #000 !important;
+    background: #fff !important;
+}
+.btn {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+}
+input, select, textarea, label, span {
+    color: #000 !important;
+}
+.sidebar-nav, .navbar-header {
+    background: #fff !important;
+}
+.top-bar .navigation {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%);
+    color: #fff !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active a span {
+    color: #fff !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li a:hover {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul li.active a.has-arrow {
+    color: #000!important;
+}
+.app-navbar .sidebar-nav ul.metismenu li a:hover span {
+    color: #000 !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li a:focus, .app-navbar .sidebar-nav ul.metismenu li a:hover {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+    color: #000;
+    transition: all .3s ease-out;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul.custom-style li a {
+    background: #fff !important;
+    color: #a2a5bd !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul.custom-style li.active a {
+    background: #fff !important;
+    color: #000 !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul.custom-style li.active li a {
+    background: #fff !important;
+    color: #a2a5bd !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul.custom-style li a:hover {
+    color: #000 !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li a, ul li a {
+    color: #000 !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul li.active a {
+    color: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+}
+.text-primary {
+    color: #fff !important;
+}
+.mCS-minimal.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
+    background-color: #E2E2E2 !important;
+    width: 6px;
+}
+.breadcrumb-item.active {
+    color: #000 !important;
+}
+ol li, ul li {
+    color: #000;
+}
+/*.swal2-actions .swal2-confirm {
+    background-color: #fff6ed !important;
+    border-color: #A8713E !important;
+    color: #000 !important;
+}*/
+.swal2-popup {
+    border-radius: 0px !important;
+}
+.input-group-addon {
+    padding: 8px 14px;
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+    border: none !important;
+    color: #fff;
+}
+.selects-contant-boots .bootstrap-tagsinput .label-info {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+    color: #fff !important;
+}
+.selects-contant .Multi-sel .select2-container--default .select2-selection--multiple .select2-selection__choice, .selects-contant .Multi-sel .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+    border: none !important;
+    color: #fff;
+    padding: 1px 10px 1px 4px;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+}
+.notification-media {
+    cursor: pointer !important;
+}
+.tab .nav.nav-tabs li a.active {
+    background: linear-gradient(180deg, rgb(1, 195, 204) 0%, rgb(124, 42, 230) 100%) !important;
+    color: #fff !important;
+    border-color: transparent !important;
+}
+.app-chat-sidebar .app-chat-sidebar-search .input-group>.input-group-prepend>.input-group-text {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: transparent !important;
+    border-color: #dee2e6 !important;
+}
+.app-chat-type .input-group>.input-group-prepend>.input-group-text {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: transparent !important;
+    border-color: #dee2e6 !important;
+}
+.app-chat-msg-chat .chat-left .chat-msg .chat-msg-content {
+    color: #8e54e9!important;
+    background-color: #0084ff !important;
+    margin-right: 8px;
+}
+.app-chat-msg-chat .chat-left .chat-msg .chat-msg-content:first-child::before {
+    right: -16px;
+    left: auto;
+    border-left-color: #0084ff!important;
+    border-right-color: transparent;
+}
+.chat-trans-btn {
+    background-color: transparent !important;
+    color: #000 !important;
+}
+.show>.btn-primary.dropdown-toggle.chat-trans-btn {
+    background-color: transparent !important;
+    border-color: #8e54e9;
+    box-shadow: none;
+    color: #000 !important;
+}
+.dropdown-toggle::after {
+    display: hidden !important;
+    width: 0;
+    height: 0;
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+.mf-card {
+    border: 1px solid transparent !important;
+}
+.mf-card a {
+    color: #0084ff !important;
+}
+.mf-card a:hover {
+    color: #0084ff !important;
+}
+a.text-muted {
+    color: #0084ff!important;
+}
+.accordion .acd-group .mf-card .mf {
+    color: #0084ff !important;
+}
+.page-item.active .page-link {
+    background-color: #0084ff !important;
+    border-color: #0084ff !important;
+}
+.chat-dropdown {
+  width: 300px !important;
+  height: 300px !important;
+}
+.custom-bg-header {
+    background: #0084ff !important;
+}
+.link-header {
+    color: #fff !important;
+}
+.app-navbar .sidebar-nav ul.metismenu li.active ul li.active ul li.active a {
+    color: #000 !important;
+}
+.image_area {
+    position: relative;
+}
+.preview {
+    overflow: hidden;
+    width: 160px; 
+    height: 160px;
+    margin: 10px;
+    border: 1px solid red;
+}
+.overlay {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+    width: 100%;
+}
+.image_area:hover .overlay {
+    height: 50%;
+    cursor: pointer;
+}
+.text {
+    color: #333;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.recipient-img {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+}
+
+
+
+
+
