@@ -38,7 +38,7 @@
         <div class="col-lg-6 d-flex flex-column align-items-center">
             <div class="footerCopyRight text-end">
                 <h6 class="mt-3 mb-3">
-                    Terms and Condition | Refund Policy
+                    <a href = "/terms-and-conditions">Terms and Condition</a>
                 </h6>
             </div>
         </div>

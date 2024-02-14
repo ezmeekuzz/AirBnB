@@ -163,6 +163,14 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
 .footerSocial .footerCopyRight img {
     width: 30%;
 }
+.copyright .footerCopyRight a {
+    text-decoration: none;
+    color: #fff;
+}
+.terms li {
+    padding: 15px;
+    text-align: justify;
+}
 .social-icons .social-icon {
     text-decoration: none;
     color: #fff;

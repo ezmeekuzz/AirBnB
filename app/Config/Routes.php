@@ -14,6 +14,7 @@ $routes->get('/properties/datePrices/(:num)', 'PropertiesController::datePrices/
 $routes->post('/checkout/submitBooking', 'CheckoutController::submitBooking');
 $routes->get('/checkout', 'CheckoutController::index');
 $routes->get('/check-out', 'CheckoutController::index');
+$routes->get('/terms-and-conditions', 'TermsandConditionsController::index');
 require APPPATH . 'Config/Propertiesroutes.php';
 
 //Admin Routes

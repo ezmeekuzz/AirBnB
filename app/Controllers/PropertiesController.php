@@ -303,15 +303,14 @@ class PropertiesController extends BaseController
     
         return $properties;
     }
-    public function datePrices($id)
+    public function datePrices($propertyId)
     {
+        
         $priceModel = new PricingModel();
-    
-        $property = $priceModel
-                ->where('property_id', $id)
-                ->findAll($id);
-
-        // Return the response as JSON
-        return $this->response->setJSON($property);
+        
+        $prices = $priceModel
+            ->where('property_id', $propertyId)
+            ->findAll();
+        return $this->response->setJSON($prices);
     }
 }
