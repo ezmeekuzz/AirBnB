@@ -42,6 +42,8 @@ $(document).ready(function() {
     $('#hotTubFeeLabel').html(formatMoney(hotTubFee));
     $('#petFeeLabel').html(formatMoney(petFee));
     $('#nightStay').html(daysDifference);
+    $('#checkInDate').html(checkIn);
+    $('#checkOutDate').html(checkOut);
     $('#totalAmountLabel').html(formatMoney(totalAmount));
 
     paypal.Buttons({

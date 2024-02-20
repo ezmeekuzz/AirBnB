@@ -18,9 +18,7 @@
                 </h1>
                 <div class="social-icons">
                     <a href="#" class="fab fa-facebook-f social-icon"></a>
-                    <a href="#" class="fab fa-twitter social-icon"></a>
-                    <a href="#" class="fab fa-linkedin-in social-icon"></a>
-                    <a href="#" class="fas fa-envelope social-icon"></a>
+                    <a href="#" class="fab fa-instagram social-icon"></a>
                 </div>
             </div>
         </div>
@@ -31,14 +29,14 @@
         <div class="col-lg-6 d-flex flex-column align-items-center">
             <div class="footerCopyRight text-start">
                 <h6 class="mt-3 mb-3">
-                    &copy; Green Mountain Homes <?=date('Y');?> all rights reserved
+                    &copy; Green Mountain Stay <?=date('Y');?> all rights reserved
                 </h6>
             </div>
         </div>
         <div class="col-lg-6 d-flex flex-column align-items-center">
             <div class="footerCopyRight text-end">
                 <h6 class="mt-3 mb-3">
-                    <a href = "/terms-and-conditions">Terms and Condition</a>
+                    <a href = "/terms-and-conditions">Terms and Conditions</a>
                 </h6>
             </div>
         </div>

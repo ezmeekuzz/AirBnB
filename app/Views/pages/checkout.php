@@ -5,7 +5,7 @@
         <div class="col-lg-7">
             <div>
                 <h2 class="title-head m-3"><i class="fas fa-car"></i> Your Trip</h2>
-                <label class="m-3 mt-1">Dates: 02-05-2025 - 02-20-25</label>
+                <label class="m-3 mt-1">Dates: <span id="checkInDate"></span> - <span id="checkOutDate"></span></label>
                 <hr class="m-3 my-1">
             </div>
             <div>
