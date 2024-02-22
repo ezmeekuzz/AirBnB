@@ -146,7 +146,7 @@ class PropertiesController extends BaseController
         // Send email to your personal email address
         $this->email->clear();
     
-        $this->email->setTo('rustomcodilan@gmail.com'); // Replace with your actual email address
+        $this->email->setTo('yourgreenmountainstay@gmail.com'); // Replace with your actual email address
         $this->email->setSubject('You\'ve got a new message');
         
         // Create content for the email

@@ -14,6 +14,8 @@ $(document).ready(function() {
     const pets = urlParams.get('pets');
     const property_id = urlParams.get('property_id');
     const slug = urlParams.get('slug');
+    const paypalFee = urlParams.get('paypalFee');
+    const taxFee = urlParams.get('taxFee');
 
     // Convert the date strings to Date objects
     const checkInDate = new Date(checkIn);
@@ -44,6 +46,8 @@ $(document).ready(function() {
     $('#nightStay').html(daysDifference);
     $('#checkInDate').html(checkIn);
     $('#checkOutDate').html(checkOut);
+    $('#taxFeeLabel').html(formatMoney(taxFee));
+    $('#paypalFeeLabel').html(formatMoney(paypalFee));
     $('#totalAmountLabel').html(formatMoney(totalAmount));
 
     paypal.Buttons({

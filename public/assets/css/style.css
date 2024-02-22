@@ -110,6 +110,13 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
     color: #fff;
     font-size: 8px;
 }
+.done-button {
+    border-radius: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: #2196f3 !important;
+    font-size: 15px !important;
+}
 .dropdown ul li {
     padding: 5px;
 }
@@ -215,6 +222,6 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
     color: #000 !important;
     border-radius: 0 !important;
 }
-.button-cancel {
-    display: none;
+.can-be-selected {
+    background: #000 !important;
 }

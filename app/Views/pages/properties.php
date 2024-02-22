@@ -162,6 +162,11 @@
                     <li>
                         <label>If you're bringing more than 2 pets, please let your host know.</label>
                     </li>
+                    <li>
+                        <div>
+                            <button type="button" class="btn btn-primary done-button" disabled>Done</button>
+                        </div>
+                    </li>
                 </ul>
             </div>
             <button type="button" class="btn btn-primary mt-4 w-100 reservedBtn" disabled><i class="fas fa-pencil-alt"></i> Book a Reservation</button>
@@ -211,11 +216,34 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="listObtained mt-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6><i class="fab fa-paypal"></i> PayPal Fee (3%)</h6>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h6 id="paypalFee">$0.00</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="listObtained mt-2">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6><i class="fas fa-coins"></i> Tax Fee (9%)</h6>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h6 id="taxFee">$0.00</h6>
+                        </div>
+                    </div>
+                </div>
+
                 <hr class="my-4">
                 <div class="totalBeforeTax mt-2">
                     <div class="row">
                         <div class="title-head col-6">
-                            <h4>Total Before Tax</h4>
+                            <h4>Total w/ Tax(es)</h4>
                         </div>
                         <div class="title-head col-6 text-end">
                             <h4><span id="overAllTotalAmount">$0.00</span></h4>

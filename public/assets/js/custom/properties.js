@@ -7,23 +7,57 @@ document.addEventListener('DOMContentLoaded', async function () {
     var childrens = document.getElementById('childrens');
     var infants = document.getElementById('infants');
     var pets = document.getElementById('pets');
-    var petFee;
-    var basicNumberOfGuest;
-    var extraGuestFee;
-    var overAllTotalAmount;
 
     async function fetchAndSetLockDateRanges() {
         try {
             const response = await fetch('/properties/icsData/' + property_id);
             const data = await response.json();
-            const lockDateRanges = Object.values(data).map(({ start, end }) => [start, end]);
-
+    
+            console.log('Fetched data:', data);
+    
+            const lockDateRanges = Object.values(data).map(({ start, end }) => {
+                const originalStartDate = moment(start);
+                const originalEndDate = moment(end);
+    
+                const timestampStartDate = originalStartDate.valueOf();
+                const timestampEndDate = originalEndDate.valueOf();
+    
+                const adjustedStartDate = moment(start).add(1, 'day').format('YYYY-MM-DD');
+                const adjustedEndDate = moment(end).subtract(1, 'day').format('YYYY-MM-DD');
+    
+                logDataTimeInRange(timestampStartDate, timestampEndDate);
+    
+                return [adjustedStartDate, adjustedEndDate];
+            });
+    
             return lockDateRanges;
         } catch (error) {
             console.error('Error fetching lock days:', error);
         }
     }
-
+    
+    function logDataTimeInRange(startTime, endTime) {
+        const elementsWithinRange = [];
+    
+        const allDataTimeElements = document.querySelectorAll('.day-item[data-time]');
+    
+        console.log('All Data-Time Elements:', allDataTimeElements);
+    
+        allDataTimeElements.forEach((element) => {
+            const timestamp = parseInt(element.getAttribute('data-time'));
+    
+            // Log each timestamp to help identify the issue
+            console.log('Timestamp:', timestamp);
+    
+            // Check if the element has the data-time attribute and its timestamp is within the range
+            if (!isNaN(timestamp) && timestamp >= startTime && timestamp <= endTime) {
+                elementsWithinRange.push(timestamp);
+            }
+        });
+    
+        console.log('Data-time attributes within range:', elementsWithinRange);
+    }
+    
     const lockDateRanges = await fetchAndSetLockDateRanges();
 
     const picker = new Litepicker({
@@ -40,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         lockDays: lockDateRanges,
         buttonText: {
             "apply": "SUBMIT",
-            "cancel": "<i class='fas fa-times'></i> Cancel Selection"
+            "cancel": "Clear Selection"
         },
         selectForward: true,
         setup: (picker) => {
@@ -102,6 +136,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                 }
                 calculateTotalPrice(picker);
                 resetInputFields();
+                updateReservedButtonState();
+                setTimeout(() => {
+                    bsDropdown.show();
+                }, 100);
             });
             picker.on('button:cancel', () => {
                 bsDropdown.hide();
@@ -168,14 +206,28 @@ document.addEventListener('DOMContentLoaded', async function () {
     function handleIncrement(event) {
         event.stopPropagation();
         updateCounter(this, 1);
-        calculateAndUpdateTotal();
+    
+        updateReservedButtonState();
     }
 
     function handleDecrement(event) {
         event.stopPropagation();
         updateCounter(this, -1);
-        calculateAndUpdateTotal();
+    
+        updateReservedButtonState();
     }
+
+    const doneButton = document.querySelector('.done-button');
+    
+    doneButton.addEventListener('click', function() {
+        calculateAndUpdateTotal();
+        if ((parseInt(adults.value) + parseInt(childrens.value)) > 0) {
+            $('.reservedBtn').prop('disabled', false);
+        } else {
+            $('.reservedBtn').prop('disabled', true);
+        }
+        bsDropdown.hide();
+    });
 
     async function calculateAndUpdateTotal() {
         try {
@@ -189,10 +241,39 @@ document.addEventListener('DOMContentLoaded', async function () {
             var additionalGuest = Math.max(0, (parseInt(adults.value) + parseInt(childrens.value)) - totalPriceData.basicNumberOfGuest);
             extraGuestTotalAmount = (parseInt(additionalGuest) * parseFloat(totalPriceData.extraGuestFee)) * totalPriceData.dateDifference;
             totalAmountOverAll = totalPriceData.overAllTotalAmount + extraGuestTotalAmount + petTotalFee;
-            $('#extraGuestFeeLabel').html(extraGuestTotalAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
-            $('#overAllTotalAmount').html(totalAmountOverAll.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+            paypalFee = parseFloat(totalAmountOverAll) * 0.03;
+            totalWithPaypal = totalAmountOverAll + paypalFee;
+            taxFee = parseFloat(totalWithPaypal) * 0.09;
+            totalWithTaxes = totalWithPaypal + taxFee;
     
-            updateReservedButtonState();
+            $('#extraGuestFeeLabel').html(extraGuestTotalAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+            $('#overAllTotalAmount').html(totalWithTaxes.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+            $('#taxFee').html(taxFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+            $('#paypalFee').html(paypalFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+                    
+            $('.reservedBtn').on('click', function () {
+                var adultsInp = adults.value;
+                var childrensInp = adults.value;
+                var infantsInp = infants.value;
+                var petsInp = adults.value;
+                window.location.href = '/check-out?checkIn=' +
+                    picker.getStartDate().format('YYYY-MM-DD') +
+                    '&checkOut=' + picker.getEndDate().format('YYYY-MM-DD') +
+                    '&slug=' + slug +
+                    '&adults=' + encodeURIComponent(adultsInp) +
+                    '&childrens=' + encodeURIComponent(childrensInp) +
+                    '&infants=' + encodeURIComponent(infantsInp) +
+                    '&pets=' + encodeURIComponent(petsInp) +
+                    '&cleaningFee=' + totalPriceData.cleaningFee +
+                    '&extraGuestFee=' + extraGuestTotalAmount +
+                    '&hotTubFee=' + totalPriceData.hotTubFee +
+                    '&petFee=' + petTotalFee +
+                    '&property_id=' + property_id +
+                    '&nightStayTotalAmount=' + totalPriceData.totalAmount.toFixed(2) +
+                    '&paypalFee=' + parseFloat(paypalFee).toFixed(2) +
+                    '&taxFee=' + parseFloat(taxFee).toFixed(2) +
+                    '&totalAmount=' + parseFloat(totalWithTaxes).toFixed(2);
+            });
         } catch (error) {
             // Handle error if needed
             console.error('Error in calculateAndUpdateTotal:', error);
@@ -201,9 +282,9 @@ document.addEventListener('DOMContentLoaded', async function () {
                 
     function updateReservedButtonState() {
         if ((parseInt(adults.value) + parseInt(childrens.value)) > 0) {
-            $('.reservedBtn').prop('disabled', false);
+            $('.done-button').prop('disabled', false);
         } else {
-            $('.reservedBtn').prop('disabled', true);
+            $('.done-button').prop('disabled', true);
         }
     }
 
@@ -235,6 +316,10 @@ document.addEventListener('DOMContentLoaded', async function () {
                     const petFee = data.pet_fee || 0;
                     const hotTubFee = data.hot_tub_fee || 0;
                     const overAllTotalAmount = parseFloat(totalAmount) + parseFloat(cleaningFee) + parseFloat(hotTubFee) || 0;
+                    const paypalFee = parseFloat(overAllTotalAmount) * 0.03 || 0;
+                    const totalWithPaypal = overAllTotalAmount + paypalFee;
+                    const taxFee = parseFloat(totalWithPaypal) * 0.09 || 0;
+                    const totalWithTaxes = totalWithPaypal + taxFee;
 
                     const startDate = picker.getStartDate().format('YYYY-MM-DD');
                     const endDate = picker.getEndDate().format('YYYY-MM-DD');
@@ -255,38 +340,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                     const formattedTotalAmount = totalAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
                     const formattedCleaningFee = '$' + cleaningFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
                     const formattedHotTubFee = '$' + hotTubFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                    const formattedOverAllTotalAmount = overAllTotalAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                    const formattedOverAllTotalAmount = totalWithTaxes.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                    const formattedtaxFee = taxFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                    const formattedPaypalFee = paypalFee.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
     
                     $('#totalAmount').html(formattedTotalAmount + ' (x'+ dateDifference +' Nights)');
                     $('#overAllTotalAmount').html(formattedOverAllTotalAmount);
                     $('#cleaningFeeLabel').html(formattedCleaningFee);
                     $('#hotTubFeeLabel').html(formattedHotTubFee);
+                    $('#taxFee').html(formattedtaxFee);
+                    $('#paypalFee').html(formattedPaypalFee);
 
                     resolve(result);
-                    
-                    $('.reservedBtn').on('click', function () {
-                        var adultsInp = adults.value;
-                        var childrensInp = adults.value;
-                        var infantsInp = adults.value;
-                        var petsInp = adults.value;
-                        window.location.href = '/check-out?checkIn=' +
-                            picker.getStartDate().format('YYYY-MM-DD') +
-                            '&checkOut=' + picker.getEndDate().format('YYYY-MM-DD') +
-                            '&slug=' + slug +
-                            '&adults=' + encodeURIComponent(adultsInp) +
-                            '&childrens=' + encodeURIComponent(childrensInp) +
-                            '&infants=' + encodeURIComponent(infantsInp) +
-                            '&pets=' + encodeURIComponent(petsInp) +
-                            '&cleaningFee=' + cleaningFee +
-                            '&extraGuestFee=' + extraGuestTotalAmount +
-                            '&hotTubFee=' + hotTubFee +
-                            '&petFee=' + petTotalFee +
-                            '&property_id=' + property_id +
-                            '&nightStayTotalAmount=' + totalAmount +
-                            '&totalAmount=' + totalAmountOverAll;
-                    });
-
-                    bsDropdown.show();
                 },
                 error: function (xhr, status, error) {
                     console.error('Error fetching total amount:', error);

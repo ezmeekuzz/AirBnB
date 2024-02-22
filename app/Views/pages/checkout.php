@@ -10,7 +10,7 @@
             </div>
             <div>
                 <h2 class="title-head m-3"><i class="fas fa-shield-alt"></i> Cancellation Policy</h2>
-                <label class="m-3 mt-1">Free cancellation for 48 hours. Cancel before Oct 17 for a partial refund. <a href="#">Learn more</a></label>
+                <label class="m-3 mt-1">Free cancellation within the first 24 hours of booking. For more information on our cancellation policy, please see our <a href="/terms-and-conditions">Terms and Conditions</a>.</label>
                 <hr class="m-3 my-1">
             </div>
             <div>
@@ -72,6 +72,14 @@
                             <div class="col-lg-12">
                                 <label class="mb-3 text-start float-start h6 fw-bold">Pet Fee</label>
                                 <label class="mb-3 text-end float-end h6 fw-bold">$<span id="petFeeLabel"></span></label>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="mb-3 text-start float-start h6 fw-bold">Paypal Fee</label>
+                                <label class="mb-3 text-end float-end h6 fw-bold">$<span id="paypalFeeLabel"></span></label>
+                            </div>
+                            <div class="col-lg-12">
+                                <label class="mb-3 text-start float-start h6 fw-bold">Tax Fee</label>
+                                <label class="mb-3 text-end float-end h6 fw-bold">$<span id="taxFeeLabel"></span></label>
                             </div>
                         </div>
                         <hr class="my-2 mb-4 mt-4">

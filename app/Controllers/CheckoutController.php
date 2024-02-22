@@ -116,7 +116,7 @@ class CheckoutController extends BaseController
         $bookingModel->insert($data);
     
         // Send email to your Gmail account
-        $this->email->setTo('rustomcodilan@gmail.com');
+        $this->email->setTo('yourgreenmountainstay@gmail.com');
         $this->email->setSubject('New Booking Submission');
         $this->email->setMessage('A new booking has been submitted. <br/><br/>'. $content);
     
