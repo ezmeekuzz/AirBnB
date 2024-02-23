@@ -222,6 +222,16 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
     color: #000 !important;
     border-radius: 0 !important;
 }
-.can-be-selected {
-    background: #000 !important;
+.half-background-end {
+    height: 100%;
+    border-radius: 0 !important;
+    background: linear-gradient(45deg, white 50%, #74762d 50%);
+}
+.day-item {
+    border-radius: 0 !important;
+}
+.half-background-start {
+    height: 100%;
+    border-radius: 0 !important;
+    background: linear-gradient(45deg, #74762d 50%, white 50%);
 }

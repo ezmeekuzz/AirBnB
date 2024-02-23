@@ -13,19 +13,10 @@ document.addEventListener('DOMContentLoaded', async function () {
             const response = await fetch('/properties/icsData/' + property_id);
             const data = await response.json();
     
-            console.log('Fetched data:', data);
-    
             const lockDateRanges = Object.values(data).map(({ start, end }) => {
-                const originalStartDate = moment(start);
-                const originalEndDate = moment(end);
-    
-                const timestampStartDate = originalStartDate.valueOf();
-                const timestampEndDate = originalEndDate.valueOf();
     
                 const adjustedStartDate = moment(start).add(1, 'day').format('YYYY-MM-DD');
                 const adjustedEndDate = moment(end).subtract(1, 'day').format('YYYY-MM-DD');
-    
-                logDataTimeInRange(timestampStartDate, timestampEndDate);
     
                 return [adjustedStartDate, adjustedEndDate];
             });
@@ -35,27 +26,41 @@ document.addEventListener('DOMContentLoaded', async function () {
             console.error('Error fetching lock days:', error);
         }
     }
+
+    function fetchAndSetLockDateRangesWithoutAsync() {
+        $.ajax({
+            url: '/properties/icsData/' + property_id,
+            method: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Assuming data is an array of objects
+                var currentDate = moment(); // Get the current date
     
-    function logDataTimeInRange(startTime, endTime) {
-        const elementsWithinRange = [];
-    
-        const allDataTimeElements = document.querySelectorAll('.day-item[data-time]');
-    
-        console.log('All Data-Time Elements:', allDataTimeElements);
-    
-        allDataTimeElements.forEach((element) => {
-            const timestamp = parseInt(element.getAttribute('data-time'));
-    
-            // Log each timestamp to help identify the issue
-            console.log('Timestamp:', timestamp);
-    
-            // Check if the element has the data-time attribute and its timestamp is within the range
-            if (!isNaN(timestamp) && timestamp >= startTime && timestamp <= endTime) {
-                elementsWithinRange.push(timestamp);
+                data.forEach(function(item, index) {
+                    var start = moment(item.start, 'YYYY-MM-DD');
+                    var end = moment(item.end, 'YYYY-MM-DD');
+                    
+                    if (start.isSameOrAfter(currentDate) || end.isSameOrAfter(currentDate)) {
+                        var timestampStartDate = start.valueOf();
+                        var timestampEndDate = end.valueOf();
+                        
+                        var divElementStart = document.querySelector(`[data-time="${timestampStartDate}"]`);
+                        var divElementEnd = document.querySelector(`[data-time="${timestampEndDate}"]`);
+                        
+                        if (divElementEnd) {
+                            divElementEnd.classList.add('half-background-end');
+                        }
+                        
+                        if (divElementStart) {
+                            divElementStart.classList.add('half-background-start');
+                        }
+                    }
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching lock days:', error);
             }
         });
-    
-        console.log('Data-time attributes within range:', elementsWithinRange);
     }
     
     const lockDateRanges = await fetchAndSetLockDateRanges();
@@ -74,7 +79,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         lockDays: lockDateRanges,
         buttonText: {
             "apply": "SUBMIT",
-            "cancel": "Clear Selection"
+            "cancel": "Clear Dates"
         },
         selectForward: true,
         setup: (picker) => {
@@ -121,10 +126,10 @@ document.addEventListener('DOMContentLoaded', async function () {
     
             picker.on('before:show', (el) => {
                 datePrices();
+                fetchAndSetLockDateRangesWithoutAsync();
             });
-    
+
             picker.on('button:apply', () => {
-                datePrices();
                 var selectedDates = getSelectedDates(picker);
                 const hasOverlapResult = hasOverlap(lockDateRanges, selectedDates);
                 if (hasOverlapResult) {
@@ -144,12 +149,16 @@ document.addEventListener('DOMContentLoaded', async function () {
             picker.on('button:cancel', () => {
                 bsDropdown.hide();
                 picker.clearSelection();
+                datePrices();
+                fetchAndSetLockDateRangesWithoutAsync();
             });
             picker.on('change:month', (date, calendarIdx) => {
                 datePrices();
+                fetchAndSetLockDateRangesWithoutAsync();
             });
             picker.on('preselect', (startDate, endDate) => {
                 datePrices();
+                fetchAndSetLockDateRangesWithoutAsync();
                 if (startDate && startDate.getDay() === 5) {
                     picker.setOptions({
                         lockDaysFilter: (day) => {

@@ -52,6 +52,6 @@
 <script src="https://cdn.jsdelivr.net/npm/litepicker-polyfills-ie11/dist/index.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=AUGQnX6C6HQFTWNwl7T886HC_EoOHpltUlAphlFNy-I6AaUObwheXJ4qO7qNYdKJRGtRDDYZlHyl0ufT"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AaZH0i6DYDFzLYCm9Qvl379eqj6cVDqWDAEEZy0lJcMJk5dAZ2Sf12VjkNQLNS_8z06GkOFE3TltrsCq"></script>
 </body>
 </html>

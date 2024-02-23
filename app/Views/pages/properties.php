@@ -231,7 +231,7 @@
                 <div class="listObtained mt-2">
                     <div class="row">
                         <div class="col-6">
-                            <h6><i class="fas fa-coins"></i> Tax Fee (9%)</h6>
+                            <h6><i class="fas fa-coins"></i> VT Room Tax Fee (9%)</h6>
                         </div>
                         <div class="col-6 text-end">
                             <h6 id="taxFee">$0.00</h6>
