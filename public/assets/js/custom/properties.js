@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         element: document.getElementById('dateRangePicker'),
         firstDay: 0,
         format: "MM-DD-YYYY",
-        minDate: new Date()-1,
+        minDate: new Date() - 1,
         minDays: 3,
         inlineMode: true,
         lang: "en-US",
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     
                 return false;
             };
-    
+            // Function to handle data received from the server
             function handleData(data) {
                 data.forEach(function (priceData) {
                     var date = priceData.date;
@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
             }
     
+            // Function to fetch and handle date prices from the server
             function datePrices() {
                 $.ajax({
                     type: 'GET',
@@ -120,15 +121,18 @@ document.addEventListener('DOMContentLoaded', async function () {
                 });
             }
     
+            // Set options for the Litepicker instance
             picker.setOptions({
                 lockDaysFilter: (day) => lockDaysFilter(day)
             });
     
+            // Event handler before the picker is shown
             picker.on('before:show', (el) => {
                 datePrices();
                 fetchAndSetLockDateRangesWithoutAsync();
             });
-
+    
+            // Event handler when the "Apply" button is clicked
             picker.on('button:apply', () => {
                 var selectedDates = getSelectedDates(picker);
                 const hasOverlapResult = hasOverlap(lockDateRanges, selectedDates);
@@ -146,19 +150,27 @@ document.addEventListener('DOMContentLoaded', async function () {
                     bsDropdown.show();
                 }, 100);
             });
+    
+            // Event handler when the "Clear Dates" button is clicked
             picker.on('button:cancel', () => {
                 bsDropdown.hide();
                 picker.clearSelection();
                 datePrices();
                 fetchAndSetLockDateRangesWithoutAsync();
             });
+    
+            // Event handler when the month changes
             picker.on('change:month', (date, calendarIdx) => {
                 datePrices();
                 fetchAndSetLockDateRangesWithoutAsync();
             });
+    
+            // Event handler when preselecting dates
             picker.on('preselect', (startDate, endDate) => {
                 datePrices();
                 fetchAndSetLockDateRangesWithoutAsync();
+    
+                // Lock days filter based on the selected start day
                 if (startDate && startDate.getDay() === 5) {
                     picker.setOptions({
                         lockDaysFilter: (day) => {
@@ -179,6 +191,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     });
                 }
     
+                // Validation for check-in on Saturday
                 if (startDate && startDate.getDay() === 6) {
                     iziToast.error({
                         title: 'You can\'t check in on Saturday',
@@ -189,6 +202,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     $('#checkInLabel').html(startDate.format('MM-DD-YYYY'));
                 }
     
+                // Validation for check-out on Saturday
                 if (endDate && endDate.getDay() === 6) {
                     iziToast.error({
                         title: 'You can\'t check out on Saturday',
@@ -196,13 +210,13 @@ document.addEventListener('DOMContentLoaded', async function () {
                     });
                     picker.clearSelection();
                 } else {
-                    if(endDate) {
+                    if (endDate) {
                         $('#checkOutLabel').html(endDate.format('MM-DD-YYYY'));
                     }
                 }
             });
         }
-    });    
+    });   
 
     function resetInputFields() {
         document.getElementById('adults').value = 0;

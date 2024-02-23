@@ -22,7 +22,7 @@
     <div class="custom-header"></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-light">
         <div class="container">
-            <a class="navbar-brand m-4" href="/">
+            <a class="navbar-brand m-4" href="<?=$slug;?>">
                 <img src="assets/images/logoipsum-253 (7).png" class="custom-logo" alt="Logo" />
             </a>
         </div>
