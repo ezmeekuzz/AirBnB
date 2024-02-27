@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             const lockDateRanges = Object.values(data).map(({ start, end }) => {
     
                 const adjustedStartDate = moment(start).add(1, 'day').format('YYYY-MM-DD');
-                const adjustedEndDate = moment(end).subtract(1, 'day').format('YYYY-MM-DD');
+                const adjustedEndDate = moment(end).format('YYYY-MM-DD');
     
                 return [adjustedStartDate, adjustedEndDate];
             });
@@ -42,14 +42,8 @@ document.addEventListener('DOMContentLoaded', async function () {
                     
                     if (start.isSameOrAfter(currentDate) || end.isSameOrAfter(currentDate)) {
                         var timestampStartDate = start.valueOf();
-                        var timestampEndDate = end.valueOf();
                         
                         var divElementStart = document.querySelector(`[data-time="${timestampStartDate}"]`);
-                        var divElementEnd = document.querySelector(`[data-time="${timestampEndDate}"]`);
-                        
-                        if (divElementEnd) {
-                            divElementEnd.classList.add('half-background-end');
-                        }
                         
                         if (divElementStart) {
                             divElementStart.classList.add('half-background-start');
