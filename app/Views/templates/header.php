@@ -15,6 +15,7 @@
     <link href="<?=base_url();?>assets/css/style.css" rel="stylesheet">
     <link href="<?=base_url();?>assets/css/responsiveness.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
@@ -22,8 +23,8 @@
     <div class="custom-header"></div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-light">
         <div class="container">
-            <a class="navbar-brand m-4" href="<?=$slug;?>">
-                <img src="assets/images/logoipsum-253 (7).png" class="custom-logo" alt="Logo" />
+            <a class="navbar-brand m-4" href="/">
+                <img src="<?=base_url();?>assets/images/logoipsum-253 (7).png" class="custom-logo" alt="Logo" />
             </a>
         </div>
     </nav>

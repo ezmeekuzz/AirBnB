@@ -58,7 +58,7 @@ class PropertiesController extends BaseController
         if ($property) {
             // Data for the specific property is available
             $data = [
-                'title' => $property['propertyname'].' | Green Mountain Homes',
+                'title' => $property['propertyname'].' | Green Mountain Stay',
                 'propertyname' => $property['propertyname'],
                 'slug' => $property['slug'],
                 'address' => $property['address'],

@@ -39,14 +39,21 @@ document.addEventListener('DOMContentLoaded', async function () {
                 data.forEach(function(item, index) {
                     var start = moment(item.start, 'YYYY-MM-DD');
                     var end = moment(item.end, 'YYYY-MM-DD');
+                    end.add(1, 'days');
                     
                     if (start.isSameOrAfter(currentDate) || end.isSameOrAfter(currentDate)) {
                         var timestampStartDate = start.valueOf();
+                        var timestampEndDate = end.valueOf();
                         
                         var divElementStart = document.querySelector(`[data-time="${timestampStartDate}"]`);
+                        var divElementEnd = document.querySelector(`[data-time="${timestampEndDate}"]`);
                         
                         if (divElementStart) {
                             divElementStart.classList.add('half-background-start');
+                        }
+                        
+                        if (divElementEnd) {
+                            divElementEnd.classList.add('half-background-end');
                         }
                     }
                 });
@@ -340,7 +347,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     const startDate = picker.getStartDate().format('YYYY-MM-DD');
                     const endDate = picker.getEndDate().format('YYYY-MM-DD');
-                    const dateDifference = calculateDateDifference(startDate, endDate);
+                    const dateDifference = calculateDateDifference(startDate, endDate) + 1;
 
                     const result = {
                         totalAmount: totalAmount,

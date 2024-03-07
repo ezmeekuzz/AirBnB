@@ -43,7 +43,7 @@ $(document).ready(function() {
     $('#extraGuestFeeLabel').html(formatMoney(extraGuestFee));
     $('#hotTubFeeLabel').html(formatMoney(hotTubFee));
     $('#petFeeLabel').html(formatMoney(petFee));
-    $('#nightStay').html(daysDifference);
+    $('#nightStay').html(daysDifference+1);
     $('#checkInDate').html(checkIn);
     $('#checkOutDate').html(checkOut);
     $('#taxFeeLabel').html(formatMoney(taxFee));

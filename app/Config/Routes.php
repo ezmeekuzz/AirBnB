@@ -5,7 +5,13 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'admin\LoginController::index');
+$routes->get('/', 'HomeController::index');
+$routes->get('/search-result', 'SearchResultController::index');
+$routes->get('/search-result/displayResult', 'SearchResultController::displayResult');
+$routes->get('/search-result/propertyGallery/(:num)', 'SearchResultController::propertyGallery/$1');
+$routes->get('/search-result/propertyPriceBreakdown/(:num)', 'SearchResultController::propertyPriceBreakdown/$1');
+$routes->get('/home/searchDateAvailability', 'HomeController::searchDateAvailability');
+$routes->get('/admin', 'admin\LoginController::index');
 $routes->post('/properties/sendMessage', 'PropertiesController::sendMessage');
 $routes->get('properties/calculateTotalPrice/(:segment)/(:segment)/(:segment)', 'PropertiesController::calculateTotalPrice/$1/$2/$3');
 $routes->get('/properties/getGuestLimit/(:num)', 'PropertiesController::getGuestLimit/$1');

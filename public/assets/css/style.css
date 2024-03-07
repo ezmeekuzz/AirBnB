@@ -1,5 +1,5 @@
 /* styles.css */
-body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
+body, button, h1, h2, h3, h4, h5, h6, input, textarea, select, ul, li, span {
     font-family: 'Roboto', sans-serif;
 }
 #loading {
@@ -13,7 +13,7 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
     left: 0;
     opacity: 0.7;
     background-color: #fff;
-    z-index: 99999;
+    z-index: 99999999 !important;
 }
 #loading-image {
     z-index: 100;
@@ -139,8 +139,6 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
 }
 .reservedBtn {
     background: #74762d;
-    border: 1px solid #74762d;
-    opacity: 0.8;
 }
 .reservedBtn:hover {
     background: #74762d;
@@ -229,4 +227,147 @@ body, button, h1, h2, h3, h4, h5, h6, input, textarea, select {
     height: 100%;
     border-radius: 0 !important;
     background: linear-gradient(135deg, white 50%, #74762d 50%);
+}
+.half-background-end {
+    height: 100%;
+    border-radius: 0 !important;
+    background: linear-gradient(135deg, #74762d 50%, white 50%);
+}
+.daterangepicker, .daterangepicker .active, .daterangepicker .applyBtn, .daterangepicker .cancelBtn {
+    border-radius: 0 !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+.jumbotron {
+    position: relative;
+    overflow: hidden;
+}
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the alpha value for darkness */
+    filter: blur(40px); /* Adjust the blur amount as needed */
+    z-index: -1;
+}
+.custom-jumbotron {
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    background-image: url("../../assets/images/home-1/5c363965-0a16-4ad1-8ded-199361aa5854.webp");
+    background-size: cover;
+    color: #000;
+    min-height: 350px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+/* Custom Heading Styles */
+.custom-heading {
+    text-transform: uppercase;
+    z-index: 2;
+    font-weight: 600;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 7px;
+    line-height: 80px;
+    text-shadow: #000 3px 1px 4px;
+    color: #fff;
+}
+
+/* Custom Form Styles */
+.custom-form {
+    padding: 25px;
+}
+
+.custom-form-container {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 30px;
+    border-radius: 0;
+}
+
+/* Custom Button Styles */
+.custom-button {
+    border-radius: 0;
+    text-transform: uppercase;
+    background: #74762d;
+    border: 1px solid #74762d;
+}
+.input-group-text {
+    border-radius: 0;
+    border-right: none;
+}
+.custom-form-container .input-group input {
+    border-left: none;
+}
+.resultNotFound {
+    border-radius: 0;
+    padding: 20px;
+}
+.resultHeader {
+    text-transform: uppercase;
+    color: #74762d;
+}
+.dateRangeLabel {
+    font-weight: 600;
+}
+.numberIndicator .numberCount {
+    background: #74762d;
+    padding: 7px;
+    color: #fff;
+    font-size: 12px;
+}
+.numberCountResult {
+    background: #74762d;
+    padding: 7px;
+    color: #fff;
+    font-size: 12px;
+}
+.contentResult {
+    padding: 50px 70px 50px 70px;
+    background: #cacfce;
+}
+.contentResultHeader {
+    text-transform: uppercase;
+    color: #74762d;
+    font-weight: 600;
+}
+.modal-content {
+    border-radius: 0 !important;
+}
+.modal-header {
+    border-radius: 0 !important;
+    background: #74762d;
+}
+.modal-content .btnClose {
+    background-color: #74762d !important;
+    border: 3px solid #fff !important;
+    border-radius: 50% !important;
+    color: #fff !important;
+    width: 25px !important;
+    height: 25px !important;
+    padding: 0 !important;
+    font-size: 1rem !important;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content .btnClose:hover {
+    background-color: #fff !important;
+    color: #74762d !important;
+}
+.daterangepicker {
+    z-index: 999999 !important;
+}
+.availableResult {
+    background: #cacfce;
+    padding-top: 10px !important;
+    padding-bottom: 30px !important;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.availableResult h5 {
+    color: #74762d;
 }
