@@ -219,7 +219,7 @@ class SearchResultController extends BaseController
                                                 <a href = "<?= $availableProperty['checkOutLink']; ?>" class="btn btn-primary custom-button" style="font-size: 12px;">Reserve</a>
                                                 <span><?=$dateRangeBottom;?></span>
                                                 <span class="numberCountResult" data-bs-toggle="tooltip" title="<?=$numberOfNights;?> Nights"> <?=$numberOfNights;?> <i class="fa fa-moon"></i></span>
-                                                <span style="font-weight: bold;">$<?=number_format($sumOfPrices[0]['price']);?> <span style="font-size: 10px;">USD/NIGHT (Incl Tax)</span></span>
+                                                <span style="font-weight: bold;">$<?=number_format($sumOfPrices[0]['price']);?> <span style="font-size: 10px;">USD/NIGHT (Excl Tax)</span></span>
                                                 <span data-bs-toggle="tooltip" title="Price Breakdown"><a href="#" data-bs-toggle="modal" data-bs-target="#priceBreakdown" data-property-id="<?= $availableProperty['property_id']; ?>"><i class="fa fa-info-circle"></i></a></span>
                                                 <div class="d-flex align-items-center">
                                                     <span>&ndash; Green Mountain Stay Nightly Rate</span>
