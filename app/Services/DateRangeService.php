@@ -8,8 +8,32 @@ class DateRangeService
 {
     public static function formatDateRanges($icsUrl)
     {
-        // Fetch the data from the provided URL
-        $icsData = file_get_contents($icsUrl);
+        $context = stream_context_create([
+            'http' => [
+                'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            ],
+        ]);
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $icsUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Follow redirects
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); // Enable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // Strict SSL verification
+        
+        // Error logging settings
+        ini_set('display_errors', 0);
+        ini_set('log_errors', 1);
+        ini_set('error_log', '/path/to/error.log'); // Replace with the actual path
+        
+        $icsData = curl_exec($ch);
+        
+        if (curl_errno($ch)) {
+            error_log('Curl error: ' . curl_error($ch));
+        }
+        
+        curl_close($ch);
 
         // Regular expression to match both DTSTART and DTEND lines
         $pattern = '/(DTSTART|DTEND);VALUE=DATE:(\d{8})/';
@@ -45,8 +69,32 @@ class DateRangeService
     }
     public static function formatDateRangesBoolean($icsUrl)
     {
-        // Fetch the data from the provided URL
-        $icsData = file_get_contents($icsUrl);
+        $context = stream_context_create([
+            'http' => [
+                'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            ],
+        ]);
+        
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $icsUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36');
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Follow redirects
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true); // Enable SSL verification
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // Strict SSL verification
+        
+        // Error logging settings
+        ini_set('display_errors', 0);
+        ini_set('log_errors', 1);
+        ini_set('error_log', '/path/to/error.log'); // Replace with the actual path
+        
+        $icsData = curl_exec($ch);
+        
+        if (curl_errno($ch)) {
+            error_log('Curl error: ' . curl_error($ch));
+        }
+        
+        curl_close($ch);
 
         // Regular expression to match both DTSTART and DTEND lines
         $pattern = '/(DTSTART|DTEND);VALUE=DATE:(\d{8})/';
