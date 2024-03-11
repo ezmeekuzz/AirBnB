@@ -195,7 +195,7 @@ class SearchResultController extends BaseController
                                                 <div class="col-lg-12 d-flex justify-content-between align-items-center">
                                                     <h5 class="mt-4"><?= $availableProperty['propertyname']; ?></h5>
                                                     <div>
-                                                        <a href="<?= $availableProperty['slug']; ?>" style="color: #1593D0; text-decoration: none;" data-bs-toggle="tooltip" title="More Information">
+                                                        <a href="https://greenmountainstay.com/<?= $availableProperty['slug']; ?>" style="color: #1593D0; text-decoration: none;" data-bs-toggle="tooltip" title="More Information">
                                                             <i class="fa fa-info-circle"></i>
                                                         </a>
                                                     </div>
@@ -229,7 +229,7 @@ class SearchResultController extends BaseController
                                                 </div>
                                                 <div class="collapse" id="<?= $collapseId; ?>">
                                                     <!-- Content to be collapsed goes here -->
-                                                    <b>Description:</b> Thank you for choosing Green Mountain Stay for your stay! We give away a generous percentage of each night's stay to local nonprofits who are helping those experiencing homelessness here in Nashville.
+                                                    <b>Description:</b> Thank you for choosing Green Mountain Stay!
                                                 </div>
                                             </div>
                                         </div>

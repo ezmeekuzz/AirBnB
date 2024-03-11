@@ -38,7 +38,7 @@ $routes->post('/admin/edituser/update', 'admin\EdituserController::update');
 $routes->get('/admin/add-property', 'admin\AddpropertyController::index');
 $routes->post('/admin/addproperty/insert', 'admin\AddpropertyController::insert');
 $routes->get('/admin/property-masterlist', 'admin\PropertymasterlistController::index');
-$routes->delete('/admin/propertymasterlist/delete/(:num)', 'admin\propertymasterlistController::delete/$1');
+$routes->delete('/admin/propertymasterlist/delete/(:num)', 'admin\PropertymasterlistController::delete/$1');
 $routes->get('/admin/edit-property/(:num)', 'admin\EditpropertyController::index/$1');
 $routes->post('/admin/editproperty/update', 'admin\EditpropertyController::update');
 $routes->post('/admin/propertymasterlist/uploadImages', 'admin\PropertymasterlistController::uploadImages');
