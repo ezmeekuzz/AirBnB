@@ -46,7 +46,7 @@ class SearchResultController extends BaseController
         $endDateObj = new DateTime($_GET['endDate']);  
 
         // Calculate the number of nights between the start and end dates
-        $numberOfNights = $startDateObj->diff($endDateObj)->format('%a') + 1;
+        $numberOfNights = $startDateObj->diff($endDateObj)->format('%a');
         
         $adult = $this->request->getGet('adult');
         $children = $this->request->getGet('children');
@@ -68,13 +68,18 @@ class SearchResultController extends BaseController
     
                 $pricingDetails = $pricingModel
                     ->where('property_id', $property['property_id'])
-                    ->where("date >= '{$_GET['startDate']}' AND date <= '{$_GET['endDate']}'")
+                    ->where("date >= '{$_GET['startDate']}' AND date < '{$_GET['endDate']}'")
                     ->findAll();
 
                 $cleaningFee = $property['cleaningfee'];
                 $hottubFee = $property['hottub'];
                 $petFee = $property['petfee'] * $pet;
     
+                $btnDisabled = "";
+                if($payableNumberOfGuest <= 0) {
+                    $btnDisabled = "disabled";
+                }
+
                 if ($payableNumberOfGuest > $property['basic_number_of_guest']) {
                     $extraguestFee = $property['extraguest'];
                     $exceedingNumberofGuest = $payableNumberOfGuest - $property['basic_number_of_guest'];
@@ -179,7 +184,7 @@ class SearchResultController extends BaseController
                                 foreach ($availableProperties as $index => $availableProperty) {
                                     $sumOfPrices = $pricingModel->selectSum('price')
                                         ->where('date >=', $_GET['startDate'])
-                                        ->where('date <=', $_GET['endDate'])
+                                        ->where('date <', $_GET['endDate'])
                                         ->where('property_id', $availableProperty['property_id'])
                                         ->findAll();
                                     $collapseId = 'collapseExample' . $index;
@@ -216,7 +221,7 @@ class SearchResultController extends BaseController
                                                 </a>
                                             </div>
                                             <div class="mt-3">
-                                                <a href = "<?= $availableProperty['checkOutLink']; ?>" class="btn btn-primary custom-button" style="font-size: 12px;">Reserve</a>
+                                                <a href = "<?= $availableProperty['checkOutLink']; ?>" class="btn btn-primary custom-button <?=$btnDisabled;?>" style="font-size: 12px;">Reserve</a>
                                                 <span><?=$dateRangeBottom;?></span>
                                                 <span class="numberCountResult" data-bs-toggle="tooltip" title="<?=$numberOfNights;?> Nights"> <?=$numberOfNights;?> <i class="fa fa-moon"></i></span>
                                                 <span style="font-weight: bold;">$<?=number_format($sumOfPrices[0]['price']);?> <span style="font-size: 10px;">USD/NIGHT (Excl Tax)</span></span>
@@ -268,14 +273,19 @@ class SearchResultController extends BaseController
         $pet = $this->request->getGet('pet');
         $startDateObj = new DateTime($startDate);
         $endDateObj = new DateTime($endDate);
-        $numberOfNights = $startDateObj->diff($endDateObj)->format('%a') + 1;
+        $numberOfNights = $startDateObj->diff($endDateObj)->format('%a');
         $payableNumberOfGuest = $adult + $children;
     
         $pricingDetails = $pricingModel
             ->where('property_id', $propertyId)
-            ->where("date >= '{$startDate}' AND date <= '{$endDate}'")
+            ->where("date >= '{$startDate}' AND date < '{$endDate}'")
             ->findAll();
-    
+        
+        foreach ($pricingDetails as &$detail) {
+            $dateObj = new DateTime($detail['date']);
+            $detail['date'] = $dateObj->format('M d, Y');
+        } 
+
         $propertyDetails = $propertiesModel
             ->where('property_id', $propertyId)
             ->first(); // Use first() instead of find()

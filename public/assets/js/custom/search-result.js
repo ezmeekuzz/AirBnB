@@ -244,10 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response) {
                 $('#propertyPriceBreakdown tbody').empty(); // Clear existing tbody content
                 $.each(response.pricing, function (index, pricingDetail) {
-                    var dateObj = new Date(pricingDetail.date);
-                    var formattedDate = dateObj.toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
-    
-                    var row = `<tr><td>Room ${formattedDate}</td><td>$${pricingDetail.price}</td></tr>`;
+                    var row = `<tr><td>Room ${pricingDetail.date}</td><td>$${pricingDetail.price}</td></tr>`;
                     $('#propertyPriceBreakdown tbody').append(row);
                 });
                 $.each(response.fees, function (key, value) {

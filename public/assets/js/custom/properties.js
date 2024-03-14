@@ -347,7 +347,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                     const startDate = picker.getStartDate().format('YYYY-MM-DD');
                     const endDate = picker.getEndDate().format('YYYY-MM-DD');
-                    const dateDifference = calculateDateDifference(startDate, endDate) + 1;
+                    const dateDifference = calculateDateDifference(startDate, endDate);
 
                     const result = {
                         totalAmount: totalAmount,

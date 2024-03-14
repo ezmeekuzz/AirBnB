@@ -248,7 +248,7 @@ class PropertiesController extends BaseController
         $datesInRange = [];
 
         // Loop through each day in the date range
-        for ($currentTimestamp = $startTimestamp; $currentTimestamp <= $endTimestamp; $currentTimestamp += 86400) {
+        for ($currentTimestamp = $startTimestamp; $currentTimestamp < $endTimestamp; $currentTimestamp += 86400) {
             $datesInRange[] = date('Y-m-d', $currentTimestamp);
         }
 
