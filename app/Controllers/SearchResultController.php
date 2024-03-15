@@ -146,7 +146,6 @@ class SearchResultController extends BaseController
                                 <h6>Let's try That Again.</h6>
                                 <ul>
                                     <li>Did you select Friday and Saturday? We have 2-3 nights minimum on some weekends & require friday and saturday to be booked together, so try your search again and let's see what happens. (Email yourgreenmountainstay@gmail.com for possible exceptions).</li>
-                                    <li>Did you use a discount or promo code? Sometimes those only apply to specific dates. Try taking that off your search this time.</li>
                                 </ul>
                                 <button data-bs-toggle="modal" data-bs-target="#changeSearch" class="btn btn-primary custom-button">Change Search</button>
                             </div>
